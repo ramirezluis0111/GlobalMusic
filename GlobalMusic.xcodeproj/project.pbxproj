@@ -18,6 +18,8 @@
 		7F50B76A268F6FDB00FFA6D9 /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */; };
 		7F50B76E268F788300FFA6D9 /* ColorHexa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B76D268F788300FFA6D9 /* ColorHexa.swift */; };
 		7F50B770268F938100FFA6D9 /* DetailCardSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */; };
+		7F86755C2690E4C4005C2B94 /* ListAlbumSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F86755B2690E4C4005C2B94 /* ListAlbumSongs.swift */; };
+		7F86755E2690E509005C2B94 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F86755D2690E509005C2B94 /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExt.swift; sourceTree = "<group>"; };
 		7F50B76D268F788300FFA6D9 /* ColorHexa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHexa.swift; sourceTree = "<group>"; };
 		7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardSong.swift; sourceTree = "<group>"; };
+		7F86755B2690E4C4005C2B94 /* ListAlbumSongs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSongs.swift; sourceTree = "<group>"; };
+		7F86755D2690E509005C2B94 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 			children = (
 				7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */,
 				7F50B765268F6C8800FFA6D9 /* CardsLibrary.swift */,
+				7F86755B2690E4C4005C2B94 /* ListAlbumSongs.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				7F50B76D268F788300FFA6D9 /* ColorHexa.swift */,
 				7F50B767268F6D2900FFA6D9 /* funtionsView.swift */,
 				7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */,
+				7F86755D2690E509005C2B94 /* Request.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -296,6 +302,8 @@
 				7F50B770268F938100FFA6D9 /* DetailCardSong.swift in Sources */,
 				7F50B766268F6C8800FFA6D9 /* CardsLibrary.swift in Sources */,
 				7F50B768268F6D2900FFA6D9 /* funtionsView.swift in Sources */,
+				7F86755C2690E4C4005C2B94 /* ListAlbumSongs.swift in Sources */,
+				7F86755E2690E509005C2B94 /* Request.swift in Sources */,
 				7F50B73B268F64A400FFA6D9 /* GlobalMusicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@ import AVKit
 struct CardsLibrary: View {
     @State var trackName: String
     @State var collectionName: String
+    @State var artistName: String
     @State var artworkUrl100: String
     @State var playerTrack: AVPlayer!
     @State var previewUrl: String
@@ -18,6 +19,7 @@ struct CardsLibrary: View {
             destination: DetailCardSong(playerTrack: playerTrack,
                                         trackName: trackName,
                                         collectionName: collectionName,
+                                        artistName: artistName,
                                         artworkUrl100: artworkUrl100,
                                         previewUrl: previewUrl),
             label: {
@@ -33,6 +35,11 @@ struct CardsLibrary: View {
                         Text(collectionName)
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
+                        Text(artistName)
+                            .font(.system(size: 12))
+                            .bold()
+                            .foregroundColor(.gray)
+                            .padding(3)
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width / 1.3, height: 120, alignment: .leading)
@@ -49,6 +56,7 @@ struct CardsLibrary_Previews: PreviewProvider {
     static var previews: some View {
         CardsLibrary(trackName: String(),
                      collectionName: String(),
+                     artistName: String(),
                      artworkUrl100: String(),
                      previewUrl: String())
     }
