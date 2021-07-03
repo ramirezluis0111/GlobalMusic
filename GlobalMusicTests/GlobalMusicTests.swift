@@ -2,8 +2,6 @@
 //  GlobalMusicTests.swift
 //  GlobalMusicTests
 //
-//  Created by Ramirez Luis on 02/07/2021.
-//
 
 import XCTest
 @testable import GlobalMusic

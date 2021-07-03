@@ -13,6 +13,11 @@
 		7F50B742268F64A500FFA6D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F50B741268F64A500FFA6D9 /* Preview Assets.xcassets */; };
 		7F50B74D268F64A600FFA6D9 /* GlobalMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B74C268F64A600FFA6D9 /* GlobalMusicTests.swift */; };
 		7F50B758268F64A600FFA6D9 /* GlobalMusicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B757268F64A600FFA6D9 /* GlobalMusicUITests.swift */; };
+		7F50B766268F6C8800FFA6D9 /* CardsLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B765268F6C8800FFA6D9 /* CardsLibrary.swift */; };
+		7F50B768268F6D2900FFA6D9 /* funtionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B767268F6D2900FFA6D9 /* funtionsView.swift */; };
+		7F50B76A268F6FDB00FFA6D9 /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */; };
+		7F50B76E268F788300FFA6D9 /* ColorHexa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B76D268F788300FFA6D9 /* ColorHexa.swift */; };
+		7F50B770268F938100FFA6D9 /* DetailCardSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		7F50B753268F64A600FFA6D9 /* GlobalMusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlobalMusicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F50B757268F64A600FFA6D9 /* GlobalMusicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMusicUITests.swift; sourceTree = "<group>"; };
 		7F50B759268F64A600FFA6D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F50B765268F6C8800FFA6D9 /* CardsLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsLibrary.swift; sourceTree = "<group>"; };
+		7F50B767268F6D2900FFA6D9 /* funtionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = funtionsView.swift; sourceTree = "<group>"; };
+		7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExt.swift; sourceTree = "<group>"; };
+		7F50B76D268F788300FFA6D9 /* ColorHexa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHexa.swift; sourceTree = "<group>"; };
+		7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardSong.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,8 @@
 		7F50B739268F64A400FFA6D9 /* GlobalMusic */ = {
 			isa = PBXGroup;
 			children = (
+				7F50B772268FE5D200FFA6D9 /* Utility */,
+				7F50B771268FE5C000FFA6D9 /* Views */,
 				7F50B73A268F64A400FFA6D9 /* GlobalMusicApp.swift */,
 				7F50B73C268F64A400FFA6D9 /* ContentView.swift */,
 				7F50B73E268F64A500FFA6D9 /* Assets.xcassets */,
@@ -128,6 +140,25 @@
 				7F50B759268F64A600FFA6D9 /* Info.plist */,
 			);
 			path = GlobalMusicUITests;
+			sourceTree = "<group>";
+		};
+		7F50B771268FE5C000FFA6D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */,
+				7F50B765268F6C8800FFA6D9 /* CardsLibrary.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7F50B772268FE5D200FFA6D9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7F50B76D268F788300FFA6D9 /* ColorHexa.swift */,
+				7F50B767268F6D2900FFA6D9 /* funtionsView.swift */,
+				7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +291,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F50B73D268F64A400FFA6D9 /* ContentView.swift in Sources */,
+				7F50B76E268F788300FFA6D9 /* ColorHexa.swift in Sources */,
+				7F50B76A268F6FDB00FFA6D9 /* ImageExt.swift in Sources */,
+				7F50B770268F938100FFA6D9 /* DetailCardSong.swift in Sources */,
+				7F50B766268F6C8800FFA6D9 /* CardsLibrary.swift in Sources */,
+				7F50B768268F6D2900FFA6D9 /* funtionsView.swift in Sources */,
 				7F50B73B268F64A400FFA6D9 /* GlobalMusicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
