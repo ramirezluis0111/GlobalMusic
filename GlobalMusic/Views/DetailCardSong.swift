@@ -12,6 +12,7 @@ struct DetailCardSong: View {
     
     @State var trackName: String
     @State var collectionName: String
+    @State var artistName: String
     @State var artworkUrl100: String
     @State var previewUrl: String
 
@@ -41,6 +42,11 @@ struct DetailCardSong: View {
                     Text(collectionName)
                         .font(.system(size: 18))
                         .animation(Animation.easeOut.delay(0.6))
+                    Text(artistName)
+                        .font(.system(size: 18))
+                        .bold()
+                        .padding(3)
+                        .animation(Animation.easeOut.delay(0.4))
                 }
                 .padding()
                 
@@ -104,6 +110,7 @@ struct DetailCardSong_Previews: PreviewProvider {
     static var previews: some View {
         DetailCardSong(trackName: String(),
                        collectionName: String(),
+                       artistName: String(),
                        artworkUrl100: String(),
                        previewUrl: String())
     }

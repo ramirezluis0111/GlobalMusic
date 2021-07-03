@@ -8,6 +8,7 @@ import SwiftUI
 struct Result: Codable {
     let trackId: Int
     let trackName: String
+    let artistName: String
     let collectionName: String
     let artworkUrl100: String
     let previewUrl: String
@@ -19,20 +20,50 @@ struct Response: Codable {
 
 struct ContentView: View {
     @State var results = [Result]()
+    @State private var inputText: String = ""
+    @State private var isEditing = false
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack {
-                    ForEach(results, id: \.trackId) { item in
-                        CardsLibrary(trackName: item.trackName,
-                                     collectionName: item.collectionName,
-                                     artworkUrl100: item.artworkUrl100,
-                                     previewUrl: item.previewUrl)
+            VStack {
+                TextField("Search..", text: $inputText)
+                    .padding(7)
+                    .padding(.horizontal, 25)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal, 10)
+                    .onTapGesture {
+                        self.isEditing = true
+                    }
+                
+                if isEditing {
+                    Button(action: {
+                        self.isEditing = false
+                        self.inputText = ""
+
+                    }) {
+                        Text("Cancel")
+                    }
+                    .padding(.trailing, 10)
+                    .transition(.move(edge: .trailing))
+                    .animation(.default)
+                }
+                
+                ScrollView {
+                    LazyVStack {
+                        ForEach(results.filter({ inputText.isEmpty ? true :
+                            $0.trackName.uppercased().contains(inputText.uppercased())
+                        }), id: \.trackId) { item in
+                            CardsLibrary(trackName: item.trackName,
+                                         collectionName: item.collectionName,
+                                         artistName: item.artistName,
+                                         artworkUrl100: item.artworkUrl100,
+                                         previewUrl: item.previewUrl)
+                        }
                     }
                 }
+                .navigationBarTitle("GlobalMusic")
             }
-            .navigationBarTitle("GlobalMusic")
         }
         .onAppear(perform: loadData)
     }
