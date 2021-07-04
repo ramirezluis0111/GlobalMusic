@@ -12,6 +12,7 @@ struct Result: Codable {
     let collectionName: String
     let artworkUrl100: String
     let previewUrl: String
+    let collectionId: Int
 }
 
 struct Response: Codable {
@@ -58,7 +59,8 @@ struct ContentView: View {
                                          collectionName: item.collectionName,
                                          artistName: item.artistName,
                                          artworkUrl100: item.artworkUrl100,
-                                         previewUrl: item.previewUrl)
+                                         previewUrl: item.previewUrl,
+                                         collectionId: item.collectionId)
                         }
                     }
                 }

@@ -13,6 +13,7 @@ struct CardsLibrary: View {
     @State var artworkUrl100: String
     @State var playerTrack: AVPlayer!
     @State var previewUrl: String
+    @State var collectionId: Int
     
     var body: some View {
         NavigationLink(
@@ -21,7 +22,8 @@ struct CardsLibrary: View {
                                         collectionName: collectionName,
                                         artistName: artistName,
                                         artworkUrl100: artworkUrl100,
-                                        previewUrl: previewUrl),
+                                        previewUrl: previewUrl,
+                                        collectionId: collectionId),
             label: {
                 HStack() {
                     Image(uiImage: InitImage(url: artworkUrl100))
@@ -58,6 +60,7 @@ struct CardsLibrary_Previews: PreviewProvider {
                      collectionName: String(),
                      artistName: String(),
                      artworkUrl100: String(),
-                     previewUrl: String())
+                     previewUrl: String(),
+                     collectionId: Int())
     }
 }
