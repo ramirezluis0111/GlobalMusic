@@ -34,7 +34,7 @@ struct DetailCardSong: View {
                                     .cornerRadius(10)
                                     .padding(10)
                         }
-                        .animation(Animation.easeInOut(duration: 0.6).delay(0.4))
+                        .animation(Animation.easeOut(duration: 0.6).delay(0.4))
                         
                         VStack {
                             Text(trackName)
@@ -47,7 +47,7 @@ struct DetailCardSong: View {
                                 .bold()
                                 .padding(3)
                         }
-                        .animation(Animation.easeInOut(duration: 0.6).delay(0.6))
+                        .animation(Animation.easeOut(duration: 0.6).delay(0.6))
                     }
                     
                     HStack {
@@ -66,14 +66,15 @@ struct DetailCardSong: View {
                                 .font(.system(size: 50))
                         })
                     }
-                    .animation(Animation.easeInOut(duration: 0.6).delay(0.8))
+                    .animation(Animation.easeOut(duration: 0.6).delay(0.8))
                 }
                 .frame(height: UIScreen.main.bounds.height / 2.3,
                        alignment: .bottom)
                 .padding(.top, 18)
-                .animation(Animation.easeInOut)
+                
                 
                 ListAlbumSongs(collectionId: collectionId)
+                    .animation(Animation.easeOut(duration: 0.6).delay(1))
             }
         }
         .clipped()
