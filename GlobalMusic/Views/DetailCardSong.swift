@@ -7,6 +7,7 @@ import SwiftUI
 import AVKit
 
 struct DetailCardSong: View {
+    @Environment(\.colorScheme) var colorScheme
     @State var playerTrack: AVPlayer!
     @State var played = false
     
@@ -33,7 +34,7 @@ struct DetailCardSong: View {
                                     .cornerRadius(10)
                                     .padding(10)
                         }
-                        .animation(Animation.easeInOut(duration: 0.6).delay(1.2))
+                        .animation(Animation.easeInOut(duration: 0.6).delay(0.4))
                         
                         VStack {
                             Text(trackName)
@@ -46,7 +47,7 @@ struct DetailCardSong: View {
                                 .bold()
                                 .padding(3)
                         }
-                        .animation(Animation.easeInOut(duration: 0.6).delay(1.4))
+                        .animation(Animation.easeInOut(duration: 0.6).delay(0.6))
                     }
                     
                     HStack {
@@ -61,16 +62,16 @@ struct DetailCardSong: View {
                         }, label: {
                             Image(systemName: !played ? "play.circle.fill"
                                     : "pause.circle.fill")
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
                                 .font(.system(size: 50))
                         })
                     }
-                    .animation(Animation.easeInOut(duration: 0.6).delay(1.6))
+                    .animation(Animation.easeInOut(duration: 0.6).delay(0.8))
                 }
                 .frame(height: UIScreen.main.bounds.height / 2.3,
                        alignment: .bottom)
-                .padding()
-                .animation(Animation.easeOut(duration: 0.5))
+                .padding(.top, 18)
+                .animation(Animation.easeInOut)
                 
                 ListAlbumSongs(collectionId: collectionId)
             }
@@ -80,7 +81,7 @@ struct DetailCardSong: View {
         .onAppear {
             loadTrack(radioURL: previewUrl)
         }
-        .transition(.scale).animation(.easeOut(duration: 1.6).delay(1.6))
+        .transition(.scale).animation(.easeOut(duration: 1.6))
     }
     
     func loadTrack(radioURL: String) {
