@@ -17,13 +17,17 @@ struct CardsLibrary: View {
     
     var body: some View {
         NavigationLink(
-            destination: DetailCardSong(playerTrack: playerTrack,
-                                        trackName: trackName,
-                                        collectionName: collectionName,
-                                        artistName: artistName,
-                                        artworkUrl100: artworkUrl100,
-                                        previewUrl: previewUrl,
-                                        collectionId: collectionId),
+            destination:
+                withAnimation{
+                    DetailCardSong(playerTrack: playerTrack,
+                                             trackName: trackName,
+                                             collectionName: collectionName,
+                                             artistName: artistName,
+                                             artworkUrl100: artworkUrl100,
+                                             previewUrl: previewUrl,
+                                             collectionId: collectionId)
+                }
+                ,
             label: {
                 HStack() {
                     Image(uiImage: InitImage(url: artworkUrl100))

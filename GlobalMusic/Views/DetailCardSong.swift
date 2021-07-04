@@ -33,7 +33,7 @@ struct DetailCardSong: View {
                                     .cornerRadius(10)
                                     .padding(10)
                         }
-                        .animation(Animation.easeInOut(duration: 0.6).delay(0.2))
+                        .animation(Animation.easeInOut(duration: 0.6).delay(1.2))
                         
                         VStack {
                             Text(trackName)
@@ -46,9 +46,7 @@ struct DetailCardSong: View {
                                 .bold()
                                 .padding(3)
                         }
-                        .animation(Animation.easeInOut(duration: 0.6).delay(0.5))
-
-                        
+                        .animation(Animation.easeInOut(duration: 0.6).delay(1.4))
                     }
                     
                     HStack {
@@ -67,21 +65,22 @@ struct DetailCardSong: View {
                                 .font(.system(size: 50))
                         })
                     }
-                    .animation(Animation.easeInOut(duration: 0.6).delay(0.8))
+                    .animation(Animation.easeInOut(duration: 0.6).delay(1.6))
                 }
                 .frame(height: UIScreen.main.bounds.height / 2.3,
                        alignment: .bottom)
                 .padding()
+                .animation(Animation.easeOut(duration: 0.5))
                 
                 ListAlbumSongs(collectionId: collectionId)
             }
-            
         }
         .clipped()
         .ignoresSafeArea(.all)
         .onAppear {
             loadTrack(radioURL: previewUrl)
         }
+        .transition(.scale).animation(.easeOut(duration: 1.6).delay(1.6))
     }
     
     func loadTrack(radioURL: String) {

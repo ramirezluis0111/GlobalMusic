@@ -5,23 +5,8 @@
 
 import SwiftUI
 
-struct ResultSongs: Codable {
-    let trackId : Int?
-    let trackName: String?
-    let artistName: String?
-    let collectionName: String?
-    let artworkUrl100: String?
-    let previewUrl: String?
-    let collectionId: Int
-}
-
-struct ResponseSongs: Codable {
-    let resultCount: Int
-    let results: [ResultSongs]
-}
-
 struct ListAlbumSongs: View {
-    @State var results = [ResultSongs]()
+    @State var results = [Result]()
     @State var collectionId: Int
     
     var body: some View {
@@ -52,7 +37,7 @@ struct ListAlbumSongs: View {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let data = data {
                 if let decodeResponse = try?
-                    JSONDecoder().decode(ResponseSongs.self, from: data) {
+                    JSONDecoder().decode(Response.self, from: data) {
                     DispatchQueue.main.async {
                         self.results = decodeResponse.results
                     }

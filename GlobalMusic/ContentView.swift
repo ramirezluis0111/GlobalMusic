@@ -5,20 +5,6 @@
 
 import SwiftUI
 
-struct Result: Codable {
-    let trackId: Int
-    let trackName: String
-    let artistName: String
-    let collectionName: String
-    let artworkUrl100: String
-    let previewUrl: String
-    let collectionId: Int
-}
-
-struct Response: Codable {
-    let results: [Result]
-}
-
 struct ContentView: View {
     @State var results = [Result]()
     @State private var inputText: String = ""
@@ -53,13 +39,13 @@ struct ContentView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(results.filter({ inputText.isEmpty ? true :
-                            $0.trackName.uppercased().contains(inputText.uppercased())
+                            $0.trackName!.uppercased().contains(inputText.uppercased())
                         }), id: \.trackId) { item in
-                            CardsLibrary(trackName: item.trackName,
-                                         collectionName: item.collectionName,
-                                         artistName: item.artistName,
-                                         artworkUrl100: item.artworkUrl100,
-                                         previewUrl: item.previewUrl,
+                            CardsLibrary(trackName: item.trackName!,
+                                         collectionName: item.collectionName!,
+                                         artistName: item.artistName!,
+                                         artworkUrl100: item.artworkUrl100!,
+                                         previewUrl: item.previewUrl!,
                                          collectionId: item.collectionId)
                         }
                     }

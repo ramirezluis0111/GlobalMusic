@@ -18,6 +18,7 @@
 		7F50B76A268F6FDB00FFA6D9 /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */; };
 		7F50B76E268F788300FFA6D9 /* ColorHexa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B76D268F788300FFA6D9 /* ColorHexa.swift */; };
 		7F50B770268F938100FFA6D9 /* DetailCardSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */; };
+		7F7805BA269201B8000A1725 /* StructResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7805B9269201B8000A1725 /* StructResponse.swift */; };
 		7F86755C2690E4C4005C2B94 /* ListAlbumSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F86755B2690E4C4005C2B94 /* ListAlbumSongs.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExt.swift; sourceTree = "<group>"; };
 		7F50B76D268F788300FFA6D9 /* ColorHexa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHexa.swift; sourceTree = "<group>"; };
 		7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardSong.swift; sourceTree = "<group>"; };
+		7F7805B9269201B8000A1725 /* StructResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructResponse.swift; sourceTree = "<group>"; };
 		7F86755B2690E4C4005C2B94 /* ListAlbumSongs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSongs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 		7F50B739268F64A400FFA6D9 /* GlobalMusic */ = {
 			isa = PBXGroup;
 			children = (
+				7F7805BB269201C0000A1725 /* Structs */,
 				7F50B772268FE5D200FFA6D9 /* Utility */,
 				7F50B771268FE5C000FFA6D9 /* Views */,
 				7F50B73A268F64A400FFA6D9 /* GlobalMusicApp.swift */,
@@ -162,6 +165,14 @@
 				7F50B769268F6FDB00FFA6D9 /* ImageExt.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		7F7805BB269201C0000A1725 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				7F7805B9269201B8000A1725 /* StructResponse.swift */,
+			);
+			path = Structs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +308,7 @@
 				7F50B76E268F788300FFA6D9 /* ColorHexa.swift in Sources */,
 				7F50B76A268F6FDB00FFA6D9 /* ImageExt.swift in Sources */,
 				7F50B770268F938100FFA6D9 /* DetailCardSong.swift in Sources */,
+				7F7805BA269201B8000A1725 /* StructResponse.swift in Sources */,
 				7F50B766268F6C8800FFA6D9 /* CardsLibrary.swift in Sources */,
 				7F50B768268F6D2900FFA6D9 /* funtionsView.swift in Sources */,
 				7F86755C2690E4C4005C2B94 /* ListAlbumSongs.swift in Sources */,
