@@ -2,8 +2,6 @@
 //  StructResponse.swift
 //  GlobalMusic
 //
-//  Created by Ramirez Luis on 04/07/2021.
-//
 
 import Foundation
 
@@ -20,4 +18,9 @@ struct Result: Codable {
 struct Response: Codable {
     let resultCount: Int
     let results: [Result]
+}
+
+struct dataSaved: Identifiable {
+    var id =  UUID()
+    var dataString: String
 }

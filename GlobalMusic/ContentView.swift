@@ -7,9 +7,15 @@ import SwiftUI
 
 struct ContentView: View {
     @State var results = [Result]()
+    @State var searchedList = [Result]()
+    
     @State private var inputText: String = ""
     @State private var isEditing = false
     @State private var errorRequest = false
+    @State private var pressSearch = false
+    
+    @ObservedObject var wordsSaved = SavedSeach()
+    @State var words: [dataSaved]
     
     var body: some View {
 
@@ -27,32 +33,81 @@ struct ContentView: View {
                             .padding(.horizontal, 10)
                             .onTapGesture {
                                 self.isEditing = true
+                                self.pressSearch = false
                             }
+                            .onChange(of: inputText, perform: { value in
+                                if value.isEmpty {
+                                    isEditing = false
+                                }
+                            })
                         
                         if isEditing {
-                            Button(action: {
-                                self.isEditing = false
-                                self.inputText = ""
-
-                            }) {
-                                Text("Cancel")
+                            HStack {
+                                Button(action: {
+                                    searchedList.removeAll()
+                                    self.endTextEditing()
+                                    self.isEditing = false
+                                    self.pressSearch = false
+                                    self.inputText = ""
+                                }) {
+                                    Text("Cancel")
+                                }
+                                .font(.system(size: 18))
+                                .padding(.trailing, 10)
+                                .padding(.horizontal, 30)
+                                .transition(.move(edge: .trailing))
+                                .animation(.default)
+                                
+                                Button(action: {
+                                    searchFilter(searched: inputText, data: results)
+                                    !inputText.isEmpty ? saveData() : print("")
+                                    self.endTextEditing()
+                                    self.pressSearch = true
+                                }) {
+                                    Text("Search")
+                                }
+                                .font(.system(size: 18))
+                                .padding(.trailing, 10)
+                                .padding(.horizontal, 30)
+                                .transition(.move(edge: .trailing))
+                                .animation(.default)
                             }
-                            .padding(.trailing, 10)
-                            .transition(.move(edge: .trailing))
-                            .animation(.default)
                         }
                         
                         ScrollView {
                             LazyVStack {
-                                ForEach(results.filter({ inputText.isEmpty ? true :
-                                    $0.trackName!.uppercased().contains(inputText.uppercased())
-                                }), id: \.trackId) { item in
-                                    CardsLibrary(trackName: item.trackName!,
-                                                 collectionName: item.collectionName!,
-                                                 artistName: item.artistName!,
-                                                 artworkUrl100: item.artworkUrl100!,
-                                                 previewUrl: item.previewUrl!,
-                                                 collectionId: item.collectionId)
+                                if !isEditing {
+                                    ForEach(results, id: \.trackId) { item in
+                                        CardsLibrary(trackName: item.trackName!,
+                                                     collectionName: item.collectionName!,
+                                                     artistName: item.artistName!,
+                                                     artworkUrl100: item.artworkUrl100!,
+                                                     previewUrl: item.previewUrl!,
+                                                     collectionId: item.collectionId)
+                                    }
+                                    
+                                } else {
+                                    if pressSearch {
+                                        ForEach(searchedList, id: \.trackId) { item in
+                                            CardsLibrary(trackName: item.trackName!,
+                                                         collectionName: item.collectionName!,
+                                                         artistName: item.artistName!,
+                                                         artworkUrl100: item.artworkUrl100!,
+                                                         previewUrl: item.previewUrl!,
+                                                         collectionId: item.collectionId)
+                                        }
+                                    } else {
+                                        ForEach(words, id: \.id) { item in
+                                            Text(item.dataString)
+                                                .padding(5)
+                                                .onTapGesture {
+                                                    self.isEditing = true
+                                                    self.pressSearch = true
+                                                    searchFilter(searched: item.dataString, data: results)
+                                                    self.endTextEditing()
+                                                }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -60,7 +115,24 @@ struct ContentView: View {
                     }
                 }
             }
-        }.onAppear(perform: loadData)
+        }
+        .onAppear{
+            loadData()
+            for item in self.wordsSaved.wordsSearched {
+                words.append(dataSaved(dataString: item))
+            }
+        }
+    }
+    
+    func saveData() {
+        self.wordsSaved.wordsSearched.append(inputText)
+    }
+    
+    func searchFilter(searched: String, data: [Result]) {
+        let seached: [Result] = results.filter({ searched.isEmpty ? true :
+                        $0.trackName!.uppercased().contains(searched.uppercased())
+        })
+        searchedList = seached
     }
     
     func loadData() {
@@ -78,7 +150,6 @@ struct ContentView: View {
                         print("We have one drawback")
                         errorRequest = true
                     default:
-                        print("Entre \(data)")
                         if let decodeResponse = try?
                             JSONDecoder().decode(Response.self, from: data) {
                             DispatchQueue.main.async {
@@ -95,6 +166,13 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(words: [dataSaved]())
     }
+}
+
+extension View {
+  func endTextEditing() {
+    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                    to: nil, from: nil, for: nil)
+  }
 }
