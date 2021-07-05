@@ -52,6 +52,7 @@ struct ContentView: View {
                                 }) {
                                     Text("Cancel")
                                 }
+                                .font(.system(size: 18))
                                 .padding(.trailing, 10)
                                 .padding(.horizontal, 30)
                                 .transition(.move(edge: .trailing))
@@ -65,6 +66,7 @@ struct ContentView: View {
                                 }) {
                                     Text("Search")
                                 }
+                                .font(.system(size: 18))
                                 .padding(.trailing, 10)
                                 .padding(.horizontal, 30)
                                 .transition(.move(edge: .trailing))
