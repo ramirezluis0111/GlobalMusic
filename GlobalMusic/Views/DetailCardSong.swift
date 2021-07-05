@@ -7,6 +7,7 @@ import SwiftUI
 import AVKit
 
 struct DetailCardSong: View {
+    @Environment(\.colorScheme) var colorScheme
     @State var playerTrack: AVPlayer!
     @State var played = false
     
@@ -15,80 +16,73 @@ struct DetailCardSong: View {
     @State var artistName: String
     @State var artworkUrl100: String
     @State var previewUrl: String
+    @State var collectionId: Int
 
     var body: some View {
         ZStack {
-            Color.init(hexStringToUIColor(hex: "#D6D6D6"))
             VStack {
                 VStack {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 13)
-                            .frame(width: 110,
-                                   height: 110,
-                                   alignment: .center)
-                            .foregroundColor(Color.white)
-                        
-                        Image(uiImage: InitImage(url: artworkUrl100))
-                                .cornerRadius(10)
-                                .padding(10)
-                    }
-                    .animation(Animation.easeOut(duration: 0.6).delay(0.2))
-                    
-                    Text(trackName)
-                        .font(.system(size: 25))
-                        .bold()
-                        .padding(5)
-                        .animation(Animation.easeOut.delay(0.4))
-                    Text(collectionName)
-                        .font(.system(size: 18))
-                        .animation(Animation.easeOut.delay(0.6))
-                    Text(artistName)
-                        .font(.system(size: 18))
-                        .bold()
-                        .padding(3)
-                        .animation(Animation.easeOut.delay(0.4))
-                }
-                .padding()
-                
-                HStack {
-                    Button(action: {}, label: {
-                        Image(systemName: "backward.fill")
-                            .foregroundColor(.black)
-                            .font(.system(size: 40))
-                    })
-                
-                    Button(action: {
-                        if played {
-                            played = false
-                            pause()
-                        } else {
-                            played = true
-                            play()
+                    VStack {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 13)
+                                .frame(width: 110,
+                                       height: 110,
+                                       alignment: .center)
+                                .foregroundColor(Color.white)
+                            
+                            Image(uiImage: InitImage(url: artworkUrl100))
+                                    .cornerRadius(10)
+                                    .padding(10)
                         }
-                    }, label: {
-                        Image(systemName: !played ? "play.circle.fill"
-                                : "pause.circle.fill")
-                            .foregroundColor(.black)
-                            .font(.system(size: 50))
-                    })
-
-                    Button(action: {}, label: {
-                        Image(systemName: "forward.fill")
-                            .foregroundColor(.black)
-                            .font(.system(size: 40))
-                    })
+                        .animation(Animation.easeOut(duration: 0.6).delay(0.4))
+                        
+                        VStack {
+                            Text(trackName)
+                                .font(.system(size: 23))
+                                .bold()
+                            Text(collectionName)
+                                .font(.system(size: 16))
+                            Text(artistName)
+                                .font(.system(size: 16))
+                                .bold()
+                                .padding(3)
+                        }
+                        .animation(Animation.easeOut(duration: 0.6).delay(0.6))
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            if played {
+                                played = false
+                                pause()
+                            } else {
+                                played = true
+                                play()
+                            }
+                        }, label: {
+                            Image(systemName: !played ? "play.circle.fill"
+                                    : "pause.circle.fill")
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                                .font(.system(size: 50))
+                        })
+                    }
+                    .animation(Animation.easeOut(duration: 0.6).delay(0.8))
                 }
-                .animation(Animation.easeOut.delay(0.8))
+                .frame(height: UIScreen.main.bounds.height / 2.3,
+                       alignment: .bottom)
+                .padding(.top, 18)
+                
+                
+                ListAlbumSongs(collectionId: collectionId)
+                    .animation(Animation.easeOut(duration: 0.6).delay(1))
             }
-            
-            
         }
         .clipped()
         .ignoresSafeArea(.all)
-        .opacity(0.9)
         .onAppear {
             loadTrack(radioURL: previewUrl)
         }
+        .transition(.scale).animation(.easeOut(duration: 1.6))
     }
     
     func loadTrack(radioURL: String) {
@@ -112,6 +106,7 @@ struct DetailCardSong_Previews: PreviewProvider {
                        collectionName: String(),
                        artistName: String(),
                        artworkUrl100: String(),
-                       previewUrl: String())
+                       previewUrl: String(),
+                       collectionId: Int())
     }
 }

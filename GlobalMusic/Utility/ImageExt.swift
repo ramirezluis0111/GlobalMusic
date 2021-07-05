@@ -12,9 +12,14 @@ func InitImage(url: String) -> UIImage{
         guard let url = URL(string: url) else {
             return UIImage()
         }
+
+        let data = try? Data(contentsOf: url ) 
         
-        let data: Data = try! Data(contentsOf: url)
-        
-        return UIImage(data: data) ?? UIImage()
+        if data == nil {
+            return UIImage()
+        } else {
+            return UIImage(data: data!)!
+        }
+    
     }
 }
