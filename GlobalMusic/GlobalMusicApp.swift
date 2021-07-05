@@ -9,7 +9,7 @@ import SwiftUI
 struct GlobalMusicApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(words: [dataSaved]())
         }
     }
 }
