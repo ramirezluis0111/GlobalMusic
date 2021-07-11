@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F2E5CF42695237D0009DEE3 /* ButtonsSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E5CF32695237D0009DEE3 /* ButtonsSearch.swift */; };
 		7F50B73B268F64A400FFA6D9 /* GlobalMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B73A268F64A400FFA6D9 /* GlobalMusicApp.swift */; };
 		7F50B73D268F64A400FFA6D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50B73C268F64A400FFA6D9 /* ContentView.swift */; };
 		7F50B73F268F64A500FFA6D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F50B73E268F64A500FFA6D9 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F2E5CF32695237D0009DEE3 /* ButtonsSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsSearch.swift; sourceTree = "<group>"; };
 		7F50B737268F64A400FFA6D9 /* GlobalMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F50B73A268F64A400FFA6D9 /* GlobalMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMusicApp.swift; sourceTree = "<group>"; };
 		7F50B73C268F64A400FFA6D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				7F50B76F268F938100FFA6D9 /* DetailCardSong.swift */,
 				7F50B765268F6C8800FFA6D9 /* CardsLibrary.swift */,
 				7F86755B2690E4C4005C2B94 /* ListAlbumSongs.swift */,
+				7F2E5CF32695237D0009DEE3 /* ButtonsSearch.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				7F7805BA269201B8000A1725 /* StructResponse.swift in Sources */,
 				7F50B766268F6C8800FFA6D9 /* CardsLibrary.swift in Sources */,
 				7F92399026921E4C00556EAF /* AlertConectionView.swift in Sources */,
+				7F2E5CF42695237D0009DEE3 /* ButtonsSearch.swift in Sources */,
 				7F50B768268F6D2900FFA6D9 /* funtionsView.swift in Sources */,
 				7FEAE6AE269293400023C2E0 /* SavedData.swift in Sources */,
 				7F86755C2690E4C4005C2B94 /* ListAlbumSongs.swift in Sources */,

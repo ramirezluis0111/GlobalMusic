@@ -9,17 +9,17 @@ struct ListAlbumSongs: View {
     @State var results = [Result]()
     @State var collectionId: Int
     
+    @ObservedObject var songs: DetailSongs
+    
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(results.dropFirst(), id: \.trackId) { item in
-                    CardsLibrary(trackName: item.trackName!,
-                                 collectionName: item.collectionName!,
-                                 artistName: item.artistName!,
-                                 artworkUrl100: item.artworkUrl100!,
-                                 previewUrl: item.previewUrl!,
-                                 collectionId: collectionId)
-                }
+        List(results.dropFirst(), id: \.trackId) { item in
+            HStack {
+                Text(item.trackName!)
+                    .padding()
+                    .onTapGesture {
+                        songs.selectSong(input: item)
+                    }
+                Spacer()
             }
         }
         .onAppear(perform: loadData)
@@ -52,6 +52,6 @@ struct ListAlbumSongs: View {
 
 struct ListAlbumSongs_Previews: PreviewProvider {
     static var previews: some View {
-        ListAlbumSongs(collectionId: Int())
+        ListAlbumSongs(collectionId: Int(), songs: DetailSongs())
     }
 }

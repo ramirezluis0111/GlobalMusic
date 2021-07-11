@@ -7,41 +7,43 @@ import SwiftUI
 import AVKit
 
 struct CardsLibrary: View {
-    @State var trackName: String
-    @State var collectionName: String
-    @State var artistName: String
-    @State var artworkUrl100: String
-    @State var playerTrack: AVPlayer!
-    @State var previewUrl: String
     @State var collectionId: Int
+    
+    @ObservedObject var songs: DetailSongs
+    @State var selectedSong: Result
+    @State var image: UIImage
+    @State var trackName1 = ""
     
     var body: some View {
         NavigationLink(
             destination:
                 withAnimation{
-                    DetailCardSong(playerTrack: playerTrack,
-                                             trackName: trackName,
-                                             collectionName: collectionName,
-                                             artistName: artistName,
-                                             artworkUrl100: artworkUrl100,
-                                             previewUrl: previewUrl,
-                                             collectionId: collectionId)
-                }
-                ,
+                    DetailCardSong(collectionId: collectionId,
+                                   songs: songs, imageSelect: UIImage())
+                        .onAppear{
+                            songs.selectSong(input: selectedSong)
+                        }
+                },
             label: {
                 HStack() {
-                    Image(uiImage: InitImage(url: artworkUrl100))
+                    Image(uiImage: image)
                         .cornerRadius(13)
                         .padding(10)
+                        .onAppear{
+                            if trackName1 != selectedSong.trackName! {
+                                trackName1 = selectedSong.trackName!
+                                image = InitImage(url: selectedSong.artworkUrl100!)
+                            }
+                        }
                     VStack(alignment: .leading) {
-                        Text(trackName)
+                        Text(selectedSong.trackName!)
                             .foregroundColor(.black)
                             .font(.system(size: 15))
                             .bold()
-                        Text(collectionName)
+                        Text(selectedSong.collectionName!)
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
-                        Text(artistName)
+                        Text(selectedSong.artistName!)
                             .font(.system(size: 12))
                             .bold()
                             .foregroundColor(.gray)
@@ -53,18 +55,6 @@ struct CardsLibrary: View {
                 .cornerRadius(20)
                 .shadow(color: Color.init(hexStringToUIColor(hex: "#D6D6D6")),
                         radius: 8, x: 0.0, y: 0.0)
-                .padding()
             })
-    }
-}
-
-struct CardsLibrary_Previews: PreviewProvider {
-    static var previews: some View {
-        CardsLibrary(trackName: String(),
-                     collectionName: String(),
-                     artistName: String(),
-                     artworkUrl100: String(),
-                     previewUrl: String(),
-                     collectionId: Int())
     }
 }

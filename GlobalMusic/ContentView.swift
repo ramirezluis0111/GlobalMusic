@@ -8,6 +8,7 @@ import SwiftUI
 struct ContentView: View {
     @State var results = [Result]()
     @State var searchedList = [Result]()
+    @ObservedObject private var songs = DetailSongs()
     
     @State private var inputText: String = ""
     @State private var isEditing = false
@@ -16,9 +17,9 @@ struct ContentView: View {
     
     @ObservedObject var wordsSaved = SavedSeach()
     @State var words: [dataSaved]
+    @State var image: UIImage
     
     var body: some View {
-
         ZStack {
             if errorRequest {
                 AlertConectionView()
@@ -44,11 +45,11 @@ struct ContentView: View {
                         if isEditing {
                             HStack {
                                 Button(action: {
-                                    searchedList.removeAll()
                                     self.endTextEditing()
                                     self.isEditing = false
                                     self.pressSearch = false
                                     self.inputText = ""
+                                    searchedList.removeAll()
                                 }) {
                                     Text("Cancel")
                                 }
@@ -72,71 +73,80 @@ struct ContentView: View {
                                 .transition(.move(edge: .trailing))
                                 .animation(.default)
                             }
+                            .frame(width: UIScreen.main.bounds.width, height: 35, alignment: .center)
                         }
                         
-                        ScrollView {
-                            LazyVStack {
-                                if !isEditing {
-                                    ForEach(results, id: \.trackId) { item in
-                                        CardsLibrary(trackName: item.trackName!,
-                                                     collectionName: item.collectionName!,
-                                                     artistName: item.artistName!,
-                                                     artworkUrl100: item.artworkUrl100!,
-                                                     previewUrl: item.previewUrl!,
-                                                     collectionId: item.collectionId)
-                                    }
-                                    
-                                } else {
-                                    if pressSearch {
-                                        ForEach(searchedList, id: \.trackId) { item in
-                                            CardsLibrary(trackName: item.trackName!,
-                                                         collectionName: item.collectionName!,
-                                                         artistName: item.artistName!,
-                                                         artworkUrl100: item.artworkUrl100!,
-                                                         previewUrl: item.previewUrl!,
-                                                         collectionId: item.collectionId)
-                                        }
-                                    } else {
-                                        ForEach(words, id: \.id) { item in
-                                            Text(item.dataString)
-                                                .padding(5)
-                                                .onTapGesture {
-                                                    self.isEditing = true
-                                                    self.pressSearch = true
-                                                    searchFilter(searched: item.dataString, data: results)
-                                                    self.endTextEditing()
-                                                }
-                                        }
+
+                        if !isEditing {
+                            List {
+                                ForEach(results, id: \.trackId) { item in
+                                    CardsLibrary(collectionId: item.collectionId,
+                                                 songs: songs,
+                                                 selectedSong: item, image: UIImage())
+                                }
+                            }
+                            .foregroundColor(.white)
+                            .frame(width: UIScreen.main.bounds.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        } else {
+                            if pressSearch {
+                                List {
+                                    ForEach(searchedList, id: \.trackId) { item in
+                                        CardsLibrary(
+                                                     collectionId: item.collectionId,
+                                                     songs: songs,
+                                                     selectedSong: item, image: UIImage())
                                     }
                                 }
                             }
                         }
-                        .navigationBarTitle("GlobalMusic")
+                        
+                        if isEditing && !pressSearch {
+                            List(words, id: \.id) { item in
+                                Text(item.dataString)
+                                    .padding(5)
+                                    .onTapGesture {
+                                        self.isEditing = true
+                                        self.pressSearch = true
+                                        searchFilter(searched: item.dataString, data: results)
+                                        self.endTextEditing()
+                                    }
+                            }
+                        }
+                        Spacer()
                     }
+                    .navigationBarTitle("GlobalMusic")
                 }
             }
         }
         .onAppear{
             loadData()
-            for item in self.wordsSaved.wordsSearched {
-                words.append(dataSaved(dataString: item))
-            }
+            initWordsSuggestions()
+        }
+    }
+    
+    func initWordsSuggestions() {
+        for item in self.wordsSaved.wordsSearched {
+            words.append(dataSaved(dataString: item))
         }
     }
     
     func saveData() {
-        self.wordsSaved.wordsSearched.append(inputText)
+        if !self.wordsSaved.wordsSearched.map({$0.uppercased()}).contains(inputText.uppercased()) {
+            self.wordsSaved.wordsSearched.append(inputText)
+            words.append(dataSaved(dataString: inputText))
+        }
     }
     
     func searchFilter(searched: String, data: [Result]) {
         let seached: [Result] = results.filter({ searched.isEmpty ? true :
                         $0.trackName!.uppercased().contains(searched.uppercased())
         })
+        print(seached)
         searchedList = seached
     }
     
     func loadData() {
-        guard let url = URL( string: "https://itunes.apple.com/search?term=in+utero&mediaType=music&limit=20"
+        guard let url = URL( string: "https://itunes.apple.com/search?term=*&mediaType=music&limit=40"
         ) else {
             print("Invalid Url")
             return
@@ -154,6 +164,7 @@ struct ContentView: View {
                             JSONDecoder().decode(Response.self, from: data) {
                             DispatchQueue.main.async {
                                 self.results = decodeResponse.results
+                                self.songs.appendAllSongs(listAppend: self.results)
                             }
                             return
                         }
@@ -166,7 +177,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(words: [dataSaved]())
+        ContentView(words: [dataSaved](), image: UIImage())
     }
 }
 
